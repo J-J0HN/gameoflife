@@ -1,4 +1,4 @@
-<canvas id="life" width="500" height = "500"></canvas>
+<canvas id="life" width="1675" height = "700"></canvas>
 <script>
 
 m=document.getElementById("life").getContext('2d')
@@ -46,30 +46,31 @@ rule=(particles1, particles2, g)=>{
     a.vy = (a.vy + fy)*0.5
     a.x += a.vx
     a.y += a.vy
-    if(a.x <= 0 || a.x >= 500){ a.vx *=-1 }
-    if(a.y <= 0 || a.y >= 500){ a.vy *=-1 }
+    if(a.x <= 0 || a.x >= 1675){ a.vx *=-1 }
+    if(a.y <= 0 || a.y >= 700){ a.vy *=-1 }
     }
 }
 
 yellow = create(200, "yellow")
 red = create(200, "red")
 green = create(200, "green")
-magenta = create (170, "magenta")
+magenta = create (200, "magenta")
 
 update=()=>{
 
     rule(green, green, -0.32)
     rule(green, red, -0.17)
     rule(green, yellow, 0.34)
-    rule(green, magenta, -0.04)
+    rule(green, magenta, -0.05)
     rule(red, red, -0.1)
     rule(red, green, -0.34)
     rule(yellow, yellow, 0.15)
     rule(yellow, green, -0.2)
-    rule(magenta, red, 1)
+    rule(magenta, red, -0.01)
     rule(magenta, yellow, 0.02)
-    m.clearRect(0, 0, 500, 500)
-    draw(0, 0, "black", 500)
+    rule(magenta, magenta, 0.01)
+    m.clearRect(0, 0, 1675, 1000)
+    draw(0, 0, "black", 1675)
     for(i=0; i<particles.length; i++){
         draw(particles[i].x, particles[i].y,
         particles[i].color, 5)
